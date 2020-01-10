@@ -69,6 +69,19 @@ export default class DLQueueService {
     this.onQueueChange = onQueueChange;
   }
 
+  stop(video_id) {
+    if (!this.contains(video_id)) throw `Video with ID ${video_id} does not exist in queue`;
+
+    let queuePos;
+    for (let i = 0; i < this.queue.length; i++) {
+      if (this.queue[i].video_id === video_id) {
+        queuePos = i;
+      }
+    }
+    this.queue[queuePos].stream.destroy();
+    this._dequeue(queuePos);
+  }
+
   /**
    * Checks if a given video_id exists in queue
    * @param {string} video_id

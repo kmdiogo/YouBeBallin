@@ -5,8 +5,8 @@ import DLQueueRow from './DLQueueRow/DLQueueRow';
 
 
 export default function DLQueue(props) {
-  const rows = props.queueData.map(info => {
-    return <DLQueueRow dlService={props.dlService} videoInfo={info} key={info.video_id} />
+  const rows = props.queueData.map((info, i) => {
+    return <DLQueueRow dlService={props.dlService} videoInfo={info} key={info.video_id} i={i} />
   });
   return (
     <Table size="sm">

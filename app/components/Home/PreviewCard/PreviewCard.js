@@ -31,18 +31,14 @@ export default function PreviewCard(props) {
           { props.videoInfo.description }
         </Card.Text>
 
-        <Form inline>
-          <Form.Group className="mr-auto w-auto">
-            <Form.Label className="mr-2">
-              File Format
-            </Form.Label>
-            <Form.Control as="select" className="mr-auto w-auto">
+        <div className="d-flex">
+          <div className="ml-auto d-flex">
+            <Button onClick={ () => { props.onDownloadClick(props.videoInfo) } }>Download</Button>
+            <Form.Control as="select">
               { uniq(props.videoInfo.formats.map(e => e.container)).map(e => <option key={e}>.{e}</option>) }
             </Form.Control>
-          </Form.Group>
-
-          <Button onClick={ () => { props.onDownloadClick(props.videoInfo) } }>Download</Button>
-        </Form>
+          </div>
+        </div>
       </Card.Body>
     </Card>
   );

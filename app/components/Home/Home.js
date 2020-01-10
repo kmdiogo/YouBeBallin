@@ -61,7 +61,7 @@ export default function Home(props) {
   // test url 2: https://www.youtube.com/watch?v=DH0QIr5kowY
   // TODO: Add notification system when downloads finish usign toast
   const previewCard = (
-    <div className="w-50">
+    <div style={{width: '450px'}}>
       <PreviewCard videoInfo={videoInfo} isLoading={isPreviewLoading} onDownloadClick={handleDownloadClick} />
     </div>
   );
@@ -72,23 +72,20 @@ export default function Home(props) {
           <nav className="text-center w-100">
             <h3>YouBeBallin</h3>
             <hr style={ { borderColor: 'white' } } />
-            https://www.youtube.com/watch?v=x7Xzvm0iLCI
-            <p>
-              https://www.youtube.com/watch?v=F8SgNNBJnOg
-            </p>
           </nav>
         </Row>
 
         <Row className="mb-3">
           <URLForm onValidURL={handleValidURL} />
         </Row>
-        <Row className="mb-3">
-          <h5>Download Queue</h5>
-          <DLQueue queueData={queueData} dlService={queueService} />
-        </Row>
 
         <Row className="justify-content-center">
           { previewCard }
+        </Row>
+        
+        <Row className="mb-3">
+          <h5>Download Queue</h5>
+          <DLQueue queueData={queueData} dlService={queueService} />
         </Row>
       </Container>
     </main>

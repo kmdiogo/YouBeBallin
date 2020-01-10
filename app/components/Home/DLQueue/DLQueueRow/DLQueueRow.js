@@ -21,6 +21,10 @@ export default function DLQueueRow(props) {
     props.dlService.subscribeProgress(props.videoInfo.video_id, handleProgress);
   }, [props.dlService]);
 
+  function handleStopClick() {
+    props.dlService.stop(props.videoInfo.video_id);
+  }
+
 
   const size = <span>{formatBytes(bytes)} / {formatBytes(totalBytes)}</span>;
   return (
@@ -28,12 +32,13 @@ export default function DLQueueRow(props) {
       <td>{ props.videoInfo.title }</td>
       <td>{ totalBytes === 1 ? '?' : size}</td>
       <td><ProgressBar animated now={bytes} max={totalBytes} label={`${Math.floor((bytes / totalBytes) * 100)}%`} /></td>
-      <td><Button size="sm"><FontAwesomeIcon icon={faTimes} /></Button></td>
+      <td><Button size="sm" onClick={handleStopClick}><FontAwesomeIcon icon={faTimes} /></Button></td>
     </tr>
   )
 }
 
 DLQueueRow.propTypes = {
   dlService: PropTypes.object,
-  videoInfo: PropTypes.object
+  videoInfo: PropTypes.object,
+  i: PropTypes.number
 };
